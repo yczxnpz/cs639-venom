@@ -1,37 +1,40 @@
-## Welcome to GitHub Pages
+# idyll-embed
+Embed Idyll directly in an HTML page
 
-You can use the [editor on GitHub](https://github.com/yczxnpz/cs639-venom/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## Usage
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+```html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  </head>
+  <body>
+    <script src="dist/idyll-embed.min.js"></script>
+    <script>
+      // Create a new div where Idyll will inject content.
+      var div = document.createElement('div');
+      document.body.appendChild(div);
 
-### Markdown
+      // Get your markup.
+      var idyllMarkup = '# Hello World';
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+      // All standard components are available by default.
+      // To add additional components, register them.
+      Idyll.registerComponent('ComponentName', Component);
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+      // Instantiate the Idyll runtime.
+      Idyll.render(idyllMarkup, div);
+    </script>
+  </body>
+</html>
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## How to modify this library for your own needs
 
-### Jekyll Themes
+1. Clone this repo
+2. Run `npm install` to install the dependencies.
+3. Edit `index.js` according to your own use-case. See the comments in `index.js` for more info.
+4. Rebuild the dist file: `npm run build`
+5. Include the newly created JavaScript file (`dist/idyll-embed.min.js`) in your HTML.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yczxnpz/cs639-venom/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
